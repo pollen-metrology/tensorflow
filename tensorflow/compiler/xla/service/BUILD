@@ -1053,9 +1053,7 @@ cc_library(
     srcs = ["algebraic_simplifier.cc"],
     hdrs = ["algebraic_simplifier.h"],
     deps = [
-        ":call_inliner",
         ":hlo",
-        ":hlo_evaluator",
         ":hlo_pass",
         ":hlo_query",
         ":shape_inference",
@@ -1087,6 +1085,32 @@ tf_cc_test(
         "//tensorflow/compiler/xla/tests:hlo_verified_test_base",
         "//tensorflow/compiler/xla/tests:xla_internal_test_main",  # fixdeps: keep
         "//tensorflow/core:lib",
+        "//tensorflow/core:test",
+    ],
+)
+
+cc_library(
+    name = "while_loop_simplifier",
+    srcs = ["while_loop_simplifier.cc"],
+    hdrs = ["while_loop_simplifier.h"],
+    deps = [
+        ":call_inliner",
+        ":hlo",
+        ":hlo_evaluator",
+        ":hlo_pass",
+        "//tensorflow/compiler/xla:statusor",
+        "//tensorflow/core:lib",
+    ],
+)
+
+tf_cc_test(
+    name = "while_loop_simplifier_test",
+    srcs = ["while_loop_simplifier_test.cc"],
+    deps = [
+        ":hlo_matchers",
+        ":while_loop_simplifier",
+        "//tensorflow/compiler/xla:test",
+        "//tensorflow/compiler/xla/tests:hlo_verified_test_base",
         "//tensorflow/core:test",
     ],
 )
@@ -1754,7 +1778,6 @@ tf_cc_test(
         "//tensorflow/compiler/xla:xla_data_proto",
         "//tensorflow/compiler/xla/tests:hlo_test_base",
         "//tensorflow/compiler/xla/tests:test_utils",
-        "//tensorflow/compiler/xla/tests:xla_internal_test_main",
         "//tensorflow/core:lib",
     ],
 )
@@ -1825,7 +1848,6 @@ tf_cc_test(
         "//tensorflow/compiler/xla/tests:hlo_test_base",
         "//tensorflow/compiler/xla/tests:literal_test_util",
         "//tensorflow/compiler/xla/tests:test_utils",
-        "//tensorflow/compiler/xla/tests:xla_internal_test_main",
         "//tensorflow/core:lib",
     ],
 )
@@ -2126,6 +2148,7 @@ cc_library(
         "//tensorflow/compiler/xla:xla_data_proto",
         "//tensorflow/compiler/xla/service:backend",
         "//tensorflow/compiler/xla/service:compiler",
+        "//tensorflow/compiler/xla/tools/parser:hlo_parser",
         "//tensorflow/core:core_cpu_internal",
         "//tensorflow/core:lib",
         "//tensorflow/core:stream_executor_no_cuda",

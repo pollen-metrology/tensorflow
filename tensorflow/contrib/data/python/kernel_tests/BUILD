@@ -11,7 +11,9 @@ py_test(
     size = "small",
     srcs = ["batch_dataset_op_test.py"],
     srcs_version = "PY2AND3",
+    tags = ["no_pip"],
     deps = [
+        ":dataset_serialization_test",
         "//tensorflow/contrib/data/python/ops:dataset_ops",
         "//tensorflow/contrib/data/python/ops:transformation_ops",
         "//tensorflow/python:array_ops",
@@ -110,6 +112,25 @@ py_test(
         "//tensorflow/python:sparse_tensor",
         "//tensorflow/python:training",
         "//tensorflow/python/data/util:nest",
+        "//third_party/py/numpy",
+    ],
+)
+
+py_library(
+    name = "dataset_serialization_test",
+    testonly = 1,
+    srcs = [
+        "dataset_serialization_test_base.py",
+    ],
+    srcs_version = "PY2AND3",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//tensorflow/contrib/data/python/ops:iterator_ops",
+        "//tensorflow/python:errors",
+        "//tensorflow/python:framework_ops",
+        "//tensorflow/python:platform",
+        "//tensorflow/python:training",
+        "//tensorflow/python:util",
         "//third_party/py/numpy",
     ],
 )
@@ -344,7 +365,9 @@ py_test(
     size = "small",
     srcs = ["sequence_dataset_op_test.py"],
     srcs_version = "PY2AND3",
+    tags = ["no_pip"],
     deps = [
+        ":dataset_serialization_test",
         "//tensorflow/contrib/data/python/ops:dataset_ops",
         "//tensorflow/python:array_ops",
         "//tensorflow/python:client_testlib",
@@ -373,11 +396,16 @@ py_test(
     srcs_version = "PY2AND3",
     deps = [
         "//tensorflow/contrib/data/python/ops:dataset_ops",
+        "//tensorflow/contrib/data/python/ops:iterator_ops",
         "//tensorflow/python:array_ops",
         "//tensorflow/python:client_testlib",
         "//tensorflow/python:constant_op",
         "//tensorflow/python:dtypes",
         "//tensorflow/python:errors",
+        "//tensorflow/python:framework_ops",
+        "//tensorflow/python:platform",
+        "//tensorflow/python:training",
+        "//tensorflow/python/data/ops:dataset_ops",
         "//tensorflow/python/data/ops:iterator_ops",
         "//third_party/py/numpy",
     ],
@@ -402,7 +430,9 @@ py_test(
     size = "small",
     srcs = ["zip_dataset_op_test.py"],
     srcs_version = "PY2AND3",
+    tags = ["no_pip"],
     deps = [
+        ":dataset_serialization_test",
         "//tensorflow/contrib/data/python/ops:dataset_ops",
         "//tensorflow/contrib/data/python/ops:iterator_ops",
         "//tensorflow/python:array_ops",
@@ -421,6 +451,10 @@ py_test(
     size = "small",
     srcs = ["prefetching_ops_test.py"],
     srcs_version = "PY2AND3",
+    tags = [
+        "manual",
+        "no_oss",  # b/68785503
+    ],
     deps = [
         "//tensorflow/contrib/data/python/ops:dataset_ops",
         "//tensorflow/contrib/data/python/ops:prefetching_py",
@@ -428,6 +462,7 @@ py_test(
         "//tensorflow/python:client_testlib",
         "//tensorflow/python:constant_op",
         "//tensorflow/python:dtypes",
+        "//tensorflow/python:resource_variable_ops",
     ],
 )
 
