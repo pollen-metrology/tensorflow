@@ -59,5 +59,5 @@ ExternalProject_Add_Step(grpc copy_rand
     COMMAND ${CMAKE_COMMAND} -E copy
     ${CMAKE_SOURCE_DIR}/patches/grpc/rand.h ${GRPC_BUILD}/include/openssl/rand.h
     DEPENDEES patch
-    DEPENDERS buil
+    DEPENDERS build
 )
