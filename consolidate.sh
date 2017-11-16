@@ -107,7 +107,7 @@ done
 echo "---- Eigen Headers copy (header without extension)"
 
 find $COMPILATION_FOLDER -type f ! -name "*.*" | grep -i "eigen" | grep -v "_|\-" > _eigen_headers.txt
-sed -e "s|$COMPILATION_FOLDER||g"  _eigen_headers.txt > _filtered_eigen_headers.txt
+sed -e "s|$COMPILATION_FOLDER\\?||g"  _eigen_headers.txt > _filtered_eigen_headers.txt
 
 EIGEN_HEADERS_WITH_FULL_PATH=(`cat _eigen_headers.txt`)
 EIGEN_HEADERS_WITH_CLEAN_PATH=(`cat _filtered_eigen_headers.txt`)
@@ -121,14 +121,14 @@ for ((i=0;i<${#EIGEN_HEADERS_WITH_FULL_PATH[@]};++i)); do
     cp $VERBOSE $FULL_PATH include/$CLEAN_PATH
 done
 
-echo "---- Executables copy"
+echo "---- Executables copy (Windows only)"
 for executable in `find $COMPILATION_FOLDER/Release/ -name *.exe`; do
     cp $VERBOSE $executable bin/
 done
 
 
 echo "---- Binary libraries copy"
-# copy binaries in lib/ folder
+#Windows
 for lib in `find $COMPILATION_FOLDER -name 'tensorflow.lib'`; do 
     StripPath "$lib"
     echo "-- $STRIPPED"
@@ -140,9 +140,24 @@ for lib in `find $COMPILATION_FOLDER -name 'tensorflow.dll'`; do
     cp  $lib lib/
 done
 
+#Linux
+for lib in `find $COMPILATION_FOLDER -name 'tensorflow.so'`; do 
+    StripPath "$lib"
+    echo "-- $STRIPPED"
+    cp  $lib lib/
+done
+for lib in `find $COMPILATION_FOLDER -name 'tensorflow.a'`; do 
+    StripPath "$lib"
+    echo "-- $STRIPPED"
+    cp  $lib lib/
+done
+
 
 echo "Realignment for Eigen library"
+mkdir -p include/third_party/eigen3/unsupported/Eigen/CXX11/
 cp $COMPILATION_FOLDER/eigen/src/eigen/unsupported/Eigen/CXX11/Tensor include/third_party/eigen3/unsupported/Eigen/CXX11/
+
+mkdir -p include/third_party/eigen3/
 cp $COMPILATION_FOLDER/eigen/src/eigen/Eigen include/third_party/eigen3/ -r
 cp include/eigen/src/eigen/Eigen/src/ include/eigen/ -r
 
