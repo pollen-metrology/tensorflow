@@ -138,12 +138,6 @@ for ((i=0;i<${#EIGEN_HEADERS_WITH_FULL_PATH[@]};++i)); do
     cp $VERBOSE $FULL_PATH include/$CLEAN_PATH
 done
 
-echo "---- Executables copy (Windows only)"
-for executable in `find $COMPILATION_FOLDER/Release/ -name *.exe`; do
-    cp $VERBOSE $executable bin/
-done
-
-
 echo "---- Binary libraries copy"
 #Linux
 if [ -f /etc/lsb-release ]; then 
@@ -158,19 +152,9 @@ if [ -f /etc/lsb-release ]; then
         cp  $so bin/
     done
     echo
-    for lib in `find $COMPILATION_FOLDER -name '*tensorflow*.a'`; do 
-        if [ "$VERBOSE" == "-v" ] ; then
-            StripPath "$lib"
-            echo "-- $STRIPPED"
-        else
-            echo -n "."
-        fi
-        cp  $lib lib/
-    done
-    echo
 else
     echo "-- System is Windows"
-    for lib in `find $COMPILATION_FOLDER -name '*tensorflow*.lib'`; do 
+    for lib in `find $COMPILATION_FOLDER -name 'tensorflow.lib'`; do 
         if [ "$VERBOSE" == "-v" ] ; then
             StripPath "$lib"
             echo "-- $STRIPPED"
@@ -181,7 +165,7 @@ else
     done
     echo
 
-    for dll in `find $COMPILATION_FOLDER -name '*tensorflow*.dll'`; do 
+    for dll in `find $COMPILATION_FOLDER -name 'tensorflow.dll'`; do 
         if [ "$VERBOSE" == "-v" ] ; then
             StripPath "$dll"
             echo "-- $STRIPPED"
