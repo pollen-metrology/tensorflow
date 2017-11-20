@@ -12,7 +12,7 @@
 
 SOURCE_FOLDER=$1
 COMPILATION_FOLDER=$2
-#VERBOSE=" -v "
+VERBOSE="-v"
 
 CREATE_DIR="1"
 
@@ -50,8 +50,8 @@ echo "Ok."
 
 echo -n "-- Extracting unique headers folders..."
 
-sed -e 's#^\(.*/\)[^\/]*$#\1#g' _src_headers.txt | sed   -e "s#$SOURCE_FOLDER##g"      | uniq > _src_headers_folders.txt
-sed -e 's#^\(.*/\)[^\/]*$#\1#g' _build_headers.txt | sed -e "s#$COMPILATION_FOLDER##g" | uniq > _build_headers_folders.txt
+sed -e 's#^\(.*/\)[^\/]*$#\1#' _src_headers.txt | sed   -e "s#$SOURCE_FOLDER##"      | uniq > _src_headers_folders.txt
+sed -e 's#^\(.*/\)[^\/]*$#\1#' _build_headers.txt | sed -e "s#$COMPILATION_FOLDER##" | uniq > _build_headers_folders.txt
 
 echo "Ok."
 
@@ -91,7 +91,7 @@ echo ""
 echo "---- Headers copy (src)"
 
 # each header file path without the source folder prefix
-SRC_HEADERS_WITH_CLEAN_PATH=(`sed -e "s|$SOURCE_FOLDER||g" _src_headers.txt`)
+SRC_HEADERS_WITH_CLEAN_PATH=(`sed -e "s|$SOURCE_FOLDER||" _src_headers.txt`)
 for ((i=0;i<${#SRC_HEADERS_WITH_FULL_PATH[@]};++i)); do
 
     FULL_PATH=${SRC_HEADERS_WITH_FULL_PATH[i]}
@@ -106,7 +106,7 @@ for ((i=0;i<${#SRC_HEADERS_WITH_FULL_PATH[@]};++i)); do
 done
 echo ""
 echo "---- Headers copy (build)"
-BUILD_HEADERS_WITH_CLEAN_PATH=(`sed -e "s|$COMPILATION_FOLDER||g" _build_headers.txt`)
+BUILD_HEADERS_WITH_CLEAN_PATH=(`sed -e "s|$COMPILATION_FOLDER||" _build_headers.txt`)
 for ((i=0;i<${#BUILD_HEADERS_WITH_FULL_PATH[@]};++i)); do
 
     FULL_PATH=${BUILD_HEADERS_WITH_FULL_PATH[i]}
@@ -124,7 +124,7 @@ echo
 echo "---- Eigen Headers copy (header without extension)"
 
 find $COMPILATION_FOLDER -type f ! -name "*.*" | grep -i "eigen" | grep -v "_|\-" > _eigen_headers.txt
-sed -e "s|$COMPILATION_FOLDER||g"  _eigen_headers.txt | sed -e "s/^\///g" > _filtered_eigen_headers.txt
+sed -e "s|$COMPILATION_FOLDER||g"  _eigen_headers.txt | sed -e "s/^\///" > _filtered_eigen_headers.txt
 
 EIGEN_HEADERS_WITH_FULL_PATH=(`cat _eigen_headers.txt`)
 EIGEN_HEADERS_WITH_CLEAN_PATH=(`cat _filtered_eigen_headers.txt`)
