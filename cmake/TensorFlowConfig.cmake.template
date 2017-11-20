@@ -1,0 +1,65 @@
+# ===================================================================================
+#  The TensorFlow CMake configuration file.
+#
+#
+#  Usage from an external project:
+#    In your CMakeLists.txt, add these lines:
+#
+#    FIND_PACKAGE(TensorFlow REQUIRED)
+#    TARGET_LINK_LIBRARIES(MY_TARGET_NAME ${TensorFlow_LIBS})
+#
+#
+#    This file will define the following variables:
+#
+#      - TensorFlow_LIBS                     : The list of libraries to link against.
+#      - TensorFlow_LIB_DIR                  : The directory(es) where lib files are. Calling LINK_DIRECTORIES 
+#                                              with this path is NOT needed.
+#      - TensorFlow_INCLUDE_DIRS             : The TensorFlow include directories.
+#      - TensorFlow_VERSION                  : The TensorFlow version
+#
+# ===================================================================================
+#
+
+set(TensorFlow_VERSION "#VERSION#")
+set(HARDCODED_PATH "#PATH#")
+	
+if(CMAKE_VERSION VERSION_GREATER 2.6.2)
+  unset(TensorFlow_CONFIG_PATH CACHE)
+endif()
+
+# Autodetect path using current file absolute one
+if(CMAKE_VERSION VERSION_LESS "2.8.12")
+  get_filename_component(TensorFlow_CONFIG_PATH "${CMAKE_CURRENT_LIST_FILE}" PATH CACHE)
+else()
+  get_filename_component(TensorFlow_CONFIG_PATH "${CMAKE_CURRENT_LIST_FILE}" DIRECTORY CACHE)
+endif()
+
+if(TensorFlow_CONFIG_PATH)
+  
+  set(TensorFlow_FOUND TRUE CACHE BOOL "" FORCE)
+  
+  set(TensorFlow_LIBS tensorflow)
+  set(TensorFlow_LIB_DIR "${TensorFlow_CONFIG_PATH}/bin")
+  link_directories( ${LINK_DIRECTORIES} ${TensorFlow_LIB_DIR} )
+	
+  set(TensorFlow_INCLUDE_DIRS "")
+  list(APPEND TensorFlow_INCLUDE_DIRS "${TensorFlow_CONFIG_PATH}/include")
+  list(APPEND TensorFlow_INCLUDE_DIRS "${TensorFlow_CONFIG_PATH}/include/external/nsync/public")
+  list(APPEND TensorFlow_INCLUDE_DIRS "${TensorFlow_CONFIG_PATH}/include/external/eigen_archive")
+  list(APPEND TensorFlow_INCLUDE_DIRS "${TensorFlow_CONFIG_PATH}/include/")
+  list(APPEND TensorFlow_INCLUDE_DIRS "${TensorFlow_CONFIG_PATH}/include/eigen3")
+  include_directories(BEFORE "${TensorFlow_INCLUDE_DIRS}")
+  
+  include(FindPackageHandleStandardArgs)
+  find_package_handle_standard_args(TensorFlow  DEFAULT_MSG
+                                  TensorFlow_LIBS TensorFlow_INCLUDE_DIRS)
+  
+  mark_as_advanced(FORCE TensorFlow_LIBS TensorFlow_LIB_DIR TensorFlow_INCLUDE_DIRS)
+
+
+else()
+    
+	message(WARNING "TensorFlow not found. You should manually point CMake variable TensorFlow_DIR to your TensorFlow deployment folder.")
+	set(TensorFlow_FOUND FALSE CACHE BOOL "" FORCE)
+	
+endif() 
