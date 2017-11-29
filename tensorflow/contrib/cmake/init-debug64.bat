@@ -9,5 +9,4 @@ c:\dev\tools\cmake-3.7.2\bin\cmake .. ^
 -Dtensorflow_BUILD_CC_TESTS=OFF ^
 -Dtensorflow_OPTIMIZE_FOR_NATIVE_ARCH=true ^
 -Dtensorflow_WIN_CPU_SIMD_OPTIONS=/arch:AVX2 ^
--DEigen3_DIR=c:\dev\dist\msvc14\amd64\eigen\release\share\eigen3\cmake\ ^
 -DCMAKE_INSTALL_PREFIX=C:\dev\dist\msvc14\amd64\tensorflow\debug
