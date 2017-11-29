@@ -8,5 +8,5 @@ c:\dev\tools\cmake-3.7.2\bin\cmake .. ^
 -Dtensorflow_ENABLE_GRPC_SUPPORT=OFF ^
 -Dtensorflow_BUILD_CC_TESTS=OFF ^
 -Dtensorflow_OPTIMIZE_FOR_NATIVE_ARCH=true ^
--Dtensorflow_WIN_CPU_SIMD_OPTIONS=/arch:AVX2 ^
+-Dtensorflow_WIN_CPU_SIMD_OPTIONS=/arch:AVX ^
 -DCMAKE_INSTALL_PREFIX=C:\dev\dist\msvc14\amd64\tensorflow\release
