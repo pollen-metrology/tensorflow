@@ -161,7 +161,7 @@ else
         else
             echo -n "."
         fi
-        cp  $lib lib/
+        cp  $lib bin/
     done
     echo
 
