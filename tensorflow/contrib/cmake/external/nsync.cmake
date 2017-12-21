@@ -20,6 +20,8 @@ set(nsync_TAG 394e71f0ebeed6788ae6c84d42c1bedf6e1ee9f7)
 set(nsync_BUILD ${CMAKE_CURRENT_BINARY_DIR}/nsync/src/nsync)
 set(nsync_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/nsync/install)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 # put nsync includes in the directory where they are expected
 add_custom_target(nsync_create_destination_dir
     COMMAND ${CMAKE_COMMAND} -E make_directory ${nsync_INCLUDE_DIR}

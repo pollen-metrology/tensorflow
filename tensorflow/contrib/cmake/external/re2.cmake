@@ -20,6 +20,8 @@ set(re2_BUILD ${CMAKE_CURRENT_BINARY_DIR}/re2/src/re2)
 set(re2_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/re2/install)
 set(re2_TAG e7efc48)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(re2_STATIC_LIBRARIES ${re2_BUILD}/$(Configuration)/re2.lib)
 else()

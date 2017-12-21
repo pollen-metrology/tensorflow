@@ -19,6 +19,8 @@ set(GRPC_URL https://github.com/grpc/grpc.git)
 set(GRPC_BUILD ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc)
 set(GRPC_TAG 781fd6f6ea03645a520cd5c675da67ab61f87e4b)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(grpc_STATIC_LIBRARIES
       ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/${CMAKE_BUILD_TYPE}/grpc++_unsecure.lib

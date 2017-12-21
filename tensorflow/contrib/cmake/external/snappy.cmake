@@ -19,6 +19,8 @@ set(snappy_TAG "55924d11095df25ab25c405fadfe93d0a46f82eb")
 set(snappy_BUILD ${CMAKE_CURRENT_BINARY_DIR}/snappy/src/snappy)
 set(snappy_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/snappy/src/snappy)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
     set(snappy_STATIC_LIBRARIES ${snappy_BUILD}/$(Configuration)/snappy.lib)
 else()

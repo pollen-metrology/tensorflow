@@ -19,6 +19,7 @@ set(cub_HASH SHA256=b7ead9e291d34ffa8074243541c1380d63be63f88de23de8ee548db573b7
 set(cub_BUILD ${CMAKE_CURRENT_BINARY_DIR}/cub/src/cub)
 set(cub_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/cub/src/cub)
 set(cub_ARCHIVE_DIR ${CMAKE_CURRENT_BINARY_DIR}/external/cub_archive)
+set(CMAKE_DEBUG_POSTFIX "")
 
 ExternalProject_Add(cub
     PREFIX cub

@@ -20,6 +20,8 @@ set(lmdb_HASH SHA256=108532fb94c6f227558d45be3f3347b52539f0f58290a7bb31ec06c462d
 set(lmdb_BUILD ${CMAKE_BINARY_DIR}/lmdb/src/lmdb)
 set(lmdb_INSTALL ${CMAKE_BINARY_DIR}/lmdb/install)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 ExternalProject_Add(lmdb
     PREFIX lmdb
     URL ${lmdb_URL}

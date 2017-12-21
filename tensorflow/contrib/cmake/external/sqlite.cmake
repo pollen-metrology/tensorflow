@@ -20,6 +20,8 @@ set(sqlite_HASH SHA256=208780b3616f9de0aeb50822b7a8f5482f6515193859e91ed61637be6
 set(sqlite_BUILD ${CMAKE_CURRENT_BINARY_DIR}/sqlite/src/sqlite)
 set(sqlite_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/sqlite/install)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(sqlite_STATIC_LIBRARIES ${sqlite_INSTALL}/lib/sqlite.lib)
 else()

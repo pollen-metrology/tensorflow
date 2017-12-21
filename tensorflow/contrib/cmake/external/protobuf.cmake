@@ -18,6 +18,8 @@ set(PROTOBUF_INCLUDE_DIRS ${CMAKE_CURRENT_BINARY_DIR}/protobuf/src/protobuf/src)
 set(PROTOBUF_URL https://github.com/mrry/protobuf.git)  # Includes MSVC fix.
 set(PROTOBUF_TAG 1d2c7b6c7376f396c8c7dd9b6afd2d4f83f3cb05)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(protobuf_STATIC_LIBRARIES 
     debug ${CMAKE_CURRENT_BINARY_DIR}/protobuf/src/protobuf/$(Configuration)/libprotobufd.lib

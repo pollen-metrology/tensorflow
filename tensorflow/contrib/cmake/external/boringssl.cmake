@@ -27,6 +27,8 @@ set(boringssl_STATIC_LIBRARIES
 )
 set(boringssl_INCLUDES ${boringssl_BUILD})
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 set(boringssl_HEADERS
     "${boringssl_INCLUDE_DIR}/include/*.h"
 )

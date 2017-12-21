@@ -19,6 +19,8 @@ set(googletest_URL https://github.com/google/googletest.git)
 set(googletest_BUILD ${CMAKE_CURRENT_BINARY_DIR}/googletest/)
 set(googletest_TAG ec44c6c1675c25b9827aacd08c02433cccde7780)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(googletest_STATIC_LIBRARIES
       ${CMAKE_CURRENT_BINARY_DIR}/googletest/src/googletest/googletest/$(Configuration)/gtest.lib)

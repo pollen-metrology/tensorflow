@@ -24,6 +24,8 @@ set(farmhash_HEADERS
     "${farmhash_BUILD}/src/farmhash.h"
 )
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(farmhash_STATIC_LIBRARIES ${farmhash_INSTALL}/lib/farmhash.lib)
 

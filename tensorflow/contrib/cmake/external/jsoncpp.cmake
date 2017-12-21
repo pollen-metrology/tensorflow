@@ -22,6 +22,8 @@ set(jsoncpp_BUILD ${CMAKE_CURRENT_BINARY_DIR}/jsoncpp/src/jsoncpp/src/lib_json)
 set(jsoncpp_LIBRARIES ${jsoncpp_BUILD}/obj/so/libjsoncpp.so)
 set(jsoncpp_INCLUDES ${jsoncpp_BUILD})
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(jsoncpp_STATIC_LIBRARIES ${jsoncpp_BUILD}/$(Configuration)/jsoncpp.lib)
 else()

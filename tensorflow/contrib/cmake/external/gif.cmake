@@ -20,6 +20,8 @@ set(gif_HASH SHA256=34a7377ba834397db019e8eb122e551a49c98f49df75ec3fcc92b9a794a4
 set(gif_INSTALL ${CMAKE_BINARY_DIR}/gif/install)
 set(gif_BUILD ${CMAKE_BINARY_DIR}/gif/src/gif)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 
 set(gif_HEADERS
     "${gif_INSTALL}/include/gif_lib.h"

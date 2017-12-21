@@ -20,6 +20,8 @@ set(jpeg_HASH SHA256=3a753ea48d917945dd54a2d97de388aa06ca2eb1066cbfdc6652036349f
 set(jpeg_BUILD ${CMAKE_CURRENT_BINARY_DIR}/jpeg/src/jpeg)
 set(jpeg_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/jpeg/install)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 if(WIN32)
   set(jpeg_STATIC_LIBRARIES ${jpeg_INSTALL}/lib/libjpeg.lib)
 else()

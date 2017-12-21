@@ -19,6 +19,8 @@ set(gemmlowp_HASH SHA256=861cc6d9d902861f54fd77e1ab79286477dcc559b2a283e75b9c22d
 set(gemmlowp_BUILD ${CMAKE_CURRENT_BINARY_DIR}/gemmlowp/src/gemmlowp)
 set(gemmlowp_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/gemmlowp/src/gemmlowp)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 ExternalProject_Add(gemmlowp
     PREFIX gemmlowp
     URL ${gemmlowp_URL}

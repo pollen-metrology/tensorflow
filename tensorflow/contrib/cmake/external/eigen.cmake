@@ -40,6 +40,8 @@ set(eigen_URL ${eigen_url})
 set(eigen_BUILD ${CMAKE_CURRENT_BINARY_DIR}/eigen/src/eigen)
 set(eigen_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/eigen/install)
 
+set(CMAKE_DEBUG_POSTFIX "")
+
 ExternalProject_Add(eigen
     PREFIX eigen
     URL ${eigen_URL}
