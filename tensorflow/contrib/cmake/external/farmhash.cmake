@@ -40,8 +40,8 @@ if(WIN32)
       CMAKE_CACHE_ARGS
           -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
           -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
-          -DCMAKE_INSTALL_PREFIX:STRING=${farmhash_INSTALL})
-          -DCMAKE_DEBUG_POSTFIX=""
+          -DCMAKE_INSTALL_PREFIX:STRING=${farmhash_INSTALL}
+          -DCMAKE_DEBUG_POSTFIX='')
 else()
   set(farmhash_STATIC_LIBRARIES ${farmhash_INSTALL}/lib/libfarmhash.a)
 

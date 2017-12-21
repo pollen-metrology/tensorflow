@@ -50,8 +50,8 @@ ExternalProject_Add(nsync
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -DCMAKE_INSTALL_PREFIX:STRING=${nsync_INSTALL}
-	    -DNSYNC_LANGUAGE:STRING=c++11)
-        -DCMAKE_DEBUG_POSTFIX=""
-
+	    -DNSYNC_LANGUAGE:STRING=c++11
+        -DCMAKE_DEBUG_POSTFIX=''
+    )
 add_custom_command(TARGET nsync_copy_headers_to_destination PRE_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${nsync_INSTALL}/include/ ${nsync_INCLUDE_DIR}/)
