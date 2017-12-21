@@ -27,7 +27,9 @@ if(WIN32)
     debug ${CMAKE_BINARY_DIR}/png/install/lib/libpng12_staticd.lib
     optimized ${CMAKE_BINARY_DIR}/png/install/lib/libpng12_static.lib)
 else()
-  set(png_STATIC_LIBRARIES ${CMAKE_BINARY_DIR}/png/install/lib/libpng12.a)
+  set(png_STATIC_LIBRARIES 
+    optimized ${CMAKE_BINARY_DIR}/png/install/lib/libpng12.a
+    debug ${CMAKE_BINARY_DIR}/png/install/lib/libpng12d.a)
 endif()
 
 set(png_HEADERS
@@ -47,7 +49,6 @@ ExternalProject_Add(png
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -DCMAKE_INSTALL_PREFIX:STRING=${png_INSTALL}
 	    -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
-        -DCMAKE_DEBUG_POSTFIX=''
 	    -DZLIB_ROOT:STRING=${ZLIB_INSTALL}
 )
 
