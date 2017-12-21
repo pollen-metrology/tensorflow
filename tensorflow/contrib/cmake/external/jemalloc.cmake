@@ -42,6 +42,7 @@ ExternalProject_Add(jemalloc
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -Dwith-jemalloc-prefix:STRING=jemalloc_
+        -DCMAKE_DEBUG_POSTFIX=""
         -Dwithout-export:BOOL=ON
         ${jemalloc_ADDITIONAL_CMAKE_OPTIONS}
     BUILD_COMMAND ${CMAKE_COMMAND} --build . --config ${CMAKE_BUILD_TYPE} --target jemalloc

@@ -53,7 +53,8 @@ ExternalProject_Add(grpc
         -DPROTOBUF_INCLUDE_DIRS:STRING=${PROTOBUF_INCLUDE_DIRS}
         -DPROTOBUF_LIBRARIES:STRING=${protobuf_STATIC_LIBRARIES}
         -DZLIB_ROOT:STRING=${ZLIB_INSTALL}
-	-DgRPC_SSL_PROVIDER:STRING=NONE
+	    -DgRPC_SSL_PROVIDER:STRING=NONE
+        -DCMAKE_DEBUG_POSTFIX=""
 )
 
 # grpc/src/core/ext/census/tracing.c depends on the existence of openssl/rand.h.

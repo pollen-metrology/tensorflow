@@ -46,6 +46,7 @@ ExternalProject_Add(snappy
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -DSNAPPY_BUILD_TESTS:BOOL=OFF
         -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
+        -DCMAKE_DEBUG_POSTFIX=""
 )
 
 # actually enables snappy in the source code

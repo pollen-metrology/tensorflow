@@ -27,8 +27,6 @@ set(boringssl_STATIC_LIBRARIES
 )
 set(boringssl_INCLUDES ${boringssl_BUILD})
 
-set(CMAKE_DEBUG_POSTFIX "")
-
 set(boringssl_HEADERS
     "${boringssl_INCLUDE_DIR}/include/*.h"
 )
@@ -43,6 +41,7 @@ ExternalProject_Add(boringssl
     CMAKE_CACHE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
+        -DCMAKE_DEBUG_POSTFIX=""
         -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
 )
 

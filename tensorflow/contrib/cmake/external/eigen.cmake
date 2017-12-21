@@ -40,8 +40,6 @@ set(eigen_URL ${eigen_url})
 set(eigen_BUILD ${CMAKE_CURRENT_BINARY_DIR}/eigen/src/eigen)
 set(eigen_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/eigen/install)
 
-set(CMAKE_DEBUG_POSTFIX "")
-
 ExternalProject_Add(eigen
     PREFIX eigen
     URL ${eigen_URL}
@@ -51,6 +49,7 @@ ExternalProject_Add(eigen
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -DCMAKE_INSTALL_PREFIX:STRING=${eigen_INSTALL}
+        -DCMAKE_DEBUG_POSTFIX=""
         -DINCLUDE_INSTALL_DIR:STRING=${CMAKE_CURRENT_BINARY_DIR}/external/eigen_archive
         -DBUILD_TESTING:BOOL=OFF
 )

@@ -42,6 +42,7 @@ if(WIN32)
           -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
           -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
           -DCMAKE_INSTALL_PREFIX:STRING=${gif_INSTALL}
+          -DCMAKE_DEBUG_POSTFIX=""
   )
 
   ExternalProject_Add_Step(gif copy_unistd
